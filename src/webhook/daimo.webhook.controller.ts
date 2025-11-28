@@ -1,11 +1,16 @@
 // src/webhooks/daimo-webhook.controller.ts
-import { Controller, Post, Body, Headers, Res } from '@nestjs/common';
+import { Controller, Post, Body, Headers, Res, Get } from '@nestjs/common';
 import type { Response } from 'express';
 import { DaimoWebhookService } from './daimo.webhook.service';
 
 @Controller('webhooks')
 export class DaimoWebhookController {
   constructor(private readonly daimoWebhookService: DaimoWebhookService) {}
+
+  @Get('test')
+  async check() {
+    return 'inside webhook controller';
+  }
 
   @Post('daimo')
   async handle(
